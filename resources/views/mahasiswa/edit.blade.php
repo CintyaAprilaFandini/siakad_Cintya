@@ -24,6 +24,10 @@
             @csrf
             @method('PUT')
             <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria-describedby="email" >
+            </div>
+            <div class="form-group">
                         <label for="Nim">Nim</label>
                         <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->nim }}" aria-describedby="Nim" >
             </div>
@@ -33,11 +37,20 @@
             </div>
             <div class="form-group">
                         <label for="Kelas">Kelas</label>
-                        <input type="Kelas" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria-describedby="Kelas" >
+                        <input type="text" name="Kelas" class="form-control" id="Kelas" value="{{ $Mahasiswa->kelas }}" aria-describedby="Kelas" >
             </div>
             <div class="form-group">
                         <label for="Jurusan">Jurusan</label>
-                        <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan" >
+                        <input type="text" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan" >
+            </div>
+            </div>
+            <div class="form-group">
+                        <label for="tanggalLahir">Tanggal Lahir</label>
+                        <input type="text" name="TanggalLahir" class="form-control" id="tanggalLahir" value="{{ $Mahasiswa->tanggalLahir }}" aria-describedby="tanggalLahir" >
+            </div>
+            <div class="form-group">
+                        <label for="alamat">Alamat</label>
+                        <input type="text" name="Alamat" class="form-control" id="Alamat" value="{{ $Mahasiswa->alamat }}" aria-describedby="Alamat" >
             </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
             </form>

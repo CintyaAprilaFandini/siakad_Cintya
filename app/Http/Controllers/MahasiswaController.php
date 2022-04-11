@@ -1,9 +1,12 @@
 <?php
 namespace App\Http\Controllers; 
 use App\Models\Mahasiswa; 
+use App\Models\Kelas;
+use App\Models\mataKuliah;
+use App\Models\Mahasiswa_MataKuliah;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\DB;
-use App\Models\Kelas;
+
 
 class MahasiswaController extends Controller
 {
@@ -136,6 +139,7 @@ $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
  return redirect()->route('mahasiswa.index')
  ->with('success', 'Mahasiswa Berhasil Diupdate');
  }
+ 
  public function destroy( $nim)
  {
 //fungsi eloquent untuk menghapus data
@@ -143,17 +147,27 @@ $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
  return redirect()->route('mahasiswa.index')
  -> with('success', 'Mahasiswa Berhasil Dihapus');
  }
+ 
+ public function nilai($nim){
+    $nilai = Mahasiswa::with('kelas', 'matakuliah')->find($nim);
+    return view('mahasiswa.nilai',compact('nilai'));
+}
 
  public function search(Request $request){
-            // Get the search value from the request
-            $search = $request->input('search');
-            //dd($search);
-            // Search in the title and body columns from the posts table
-            $data = Mahasiswa::where('nim', 'LIKE', "%{$search}%")
-                ->orWhere('nama', 'LIKE', "%{$search}%")
-                ->paginate();
+            // // Get the search value from the request
+            // $search = $request->input('search');
+            // //dd($search);
+            // // Search in the title and body columns from the posts table
+            // $data = Mahasiswa::where('nim', 'LIKE', "%{$search}%")
+            //     ->orWhere('nama', 'LIKE', "%{$search}%")
+            //     ->paginate();
         
-            // Return the search view with the resluts compacted
-            return view('mahasiswa.search', compact('data'));
+            // // Return the search view with the resluts compacted
+            // return view('mahasiswa.search', compact('data'));
+            $keyword = $request->search;
+
+        $mahasiswa = Mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(5);
+        return view('mahasiswa.cari', compact('mahasiswa'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
         }
 }; 

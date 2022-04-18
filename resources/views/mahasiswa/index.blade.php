@@ -38,6 +38,7 @@
                         <th>Jurusan</th>
                         <th>Tanggal Lahir</th>
                         <th>Alamat</th>
+                        <th>Image</th>
                         <th width="280px">Action</th>
                         </tr>
                        <!-- @if(!empty($paginate) && $paginate->count()) -->
@@ -50,6 +51,7 @@
                         <td>{{ $mhs ->jurusan }}</td>
                         <td>{{ $mhs ->tanggalLahir }}</td>
                         <td>{{ $mhs ->alamat }}</td>
+                        <td><img width="150px" src="{{ asset('storage/' . $mhs->image) }}"></td>
                         <td>
                         <form action="{{ route('mahasiswa.destroy',['mahasiswa'=>$mhs->nim]) }}" method="POST">
 

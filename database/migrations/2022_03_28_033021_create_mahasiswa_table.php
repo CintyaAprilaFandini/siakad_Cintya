@@ -22,6 +22,7 @@ class CreateMahasiswaTable extends Migration
             $table->string('jurusan', 35);
             $table->string('tanggalLahir', 15);
             $table->string('alamat', 25);
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

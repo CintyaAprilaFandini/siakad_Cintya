@@ -6,6 +6,7 @@ use App\Models\mataKuliah;
 use App\Models\Mahasiswa_MataKuliah;
 use Illuminate\Http\Request; 
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 
 class MahasiswaController extends Controller
@@ -48,7 +49,7 @@ class MahasiswaController extends Controller
  'Kelas' => 'required',
  'Jurusan' => 'required',
  'TanggalLahir' => 'required',
- 'Alamat' => 'required',
+ 'Alamat' => 'required'
  ]);
 
  $mahasiswa = new Mahasiswa;
@@ -135,6 +136,13 @@ $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
 
  $mahasiswa->kelas()->associate($kelas);
  $mahasiswa->save();
+
+ if($mahasiswa->image && file_exists( storage_path('app/public/' . $mahasiswa->image))){
+    Storage::delete('public/' . $mahasiswa->image);
+}
+$photo_name = $request->file('image')->store('images','public');
+$mahasiswa->foto = $photo_name;
+
 //jika data berhasil diupdate, akan kembali ke halaman utama
  return redirect()->route('mahasiswa.index')
  ->with('success', 'Mahasiswa Berhasil Diupdate');
@@ -169,5 +177,11 @@ $mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
         $mahasiswa = Mahasiswa::where('nama', 'like', "%" . $keyword . "%")->paginate(5);
         return view('mahasiswa.cari', compact('mahasiswa'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
+        }
+        public function cetak_khs($nim){
+            $mahasiswa = Mahasiswa::find($nim);
+    
+            $pdf= PDF::loadview('mahasiswa.khs_pdf', ['mahasiswa' => $mahasiswa]);
+            return $pdf->stream();
         }
 }; 

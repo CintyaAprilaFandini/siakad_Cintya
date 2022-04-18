@@ -51,9 +51,13 @@
                         <label for="tanggalLahir">Tanggal Lahir</label>
                         <input type="text" name="TanggalLahir" class="form-control" id="tanggalLahir" ariadescribedby="tanggalahir" >
             </div>
-            <div class="form-groqup">
+            <div class="form-group">
                         <label for="alamat">Alamat</label>
                         <input type="text" name="Alamat" class="form-control" id="alamat" ariadescribedby="alamat" >
+            </div>
+            <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" name="image" class="form-control" id="image" ariadescribedby="image" required="required" >
             </div>
  <button type="submit" class="btn btn-primary">Submit</button>
  </form>

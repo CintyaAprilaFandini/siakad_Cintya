@@ -58,6 +58,12 @@
                         <label for="alamat">Alamat</label>
                         <input type="text" name="Alamat" class="form-control" id="Alamat" value="{{ $mahasiswa->alamat }}" aria-describedby="Alamat" >
             </div>
+            <div class="form-group">
+                        <label for="Image">Image</label>
+                        <input type="file" name="Image" class="form-control" id="Image" value="{{ $mahasiswa->image }}" aria-describedby="Image" required="required">
+                        <img width="150px" src="{{ asset('storage/' . $mahasiswa->image) }}">
+
+            </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             </div>

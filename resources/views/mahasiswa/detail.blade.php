@@ -16,6 +16,8 @@
                         <li class="list-group-item"><b>Jurusan: </b>{{$Mahasiswa->jurusan}}</li>
                         <li class="list-group-item"><b>Tanggal Lahir: </b>{{$Mahasiswa->tanggalLahir}}</li>
                         <li class="list-group-item"><b>Alamat: </b>{{$Mahasiswa->alamat}}</li>
+                        <li class="list-group-item"><img width="150px" src="{{ asset('storage/' . $mahasiswa->image) }}"></li>
+
             </ul>
 </div>
             <a class="btn btn-success mt-3" href="{{ route('mahasiswa.index') }}">Kembali</a>
